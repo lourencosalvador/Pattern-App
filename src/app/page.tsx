@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import perfil from "../../public/encarregado2.jpg"
 import { IoChatbubblesSharp } from "react-icons/io5";
@@ -7,8 +8,25 @@ import { MdAutoDelete } from "react-icons/md";
 import { IoRocketSharp } from "react-icons/io5";
 import { Coment } from "./components/Coments";
 import { IoClose } from "react-icons/io5";
+import { useCallback } from "react";
+
 
 export default function Home() {
+
+  const ActionAlert = useCallback(()=> {
+    console.log("Action Alert")
+}, [])
+
+
+ const ActionSucess = useCallback(()=> {
+  console.log("Action Sucess")
+}, [])
+
+ const ActionReq =  useCallback(()=> {
+  console.log("Action Req")
+}, [])
+
+
   return (
     <div className="bg-slate-900 w-screen h-screen flex  justify-center ">
       <header className="w-[400px] h-[400px]  mt-20 justify-center items-center flex flex-col">
@@ -40,7 +58,7 @@ export default function Home() {
             <Coment.Text text="Aceita a nossa chamada filipa "/>
             <Coment.Action>
             <Coment.IconAction icon={MdAutoDelete} color="red"/>
-              <Coment.IconAction icon={IoCheckmarkSharp} color="green"/>
+              <Coment.IconAction onClick={ActionReq} icon={IoCheckmarkSharp} color="green"/>
              
             </Coment.Action>
           </Coment.Root>
@@ -49,9 +67,8 @@ export default function Home() {
             <Coment.Icon icon={IoRocketSharp}/>
             <Coment.Text text="Aceita o pedido do Romeu "/>
             <Coment.Action>
-            <Coment.IconAction icon={MdAutoDelete} color="red"/>
-              <Coment.IconAction icon={IoCheckmarkSharp} color="green"/>
-             
+            <Coment.IconAction  icon={MdAutoDelete} color="red"/>
+              <Coment.IconAction onClick={ActionAlert} icon={IoCheckmarkSharp} color="green"/>
             </Coment.Action>
           </Coment.Root>
 
