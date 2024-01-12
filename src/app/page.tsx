@@ -8,10 +8,12 @@ import { MdAutoDelete } from "react-icons/md";
 import { IoRocketSharp } from "react-icons/io5";
 import { Coment } from "./components/Coments";
 import { IoClose } from "react-icons/io5";
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
+import { Card, CardAction } from "./components/Coments/Card";
 
 
 export default function Home() {
+  const cardRef = useRef<CardAction>(null)
 
   const ActionAlert = useCallback(()=> {
     console.log("Action Alert")
@@ -26,11 +28,21 @@ export default function Home() {
   console.log("Action Req")
 }, [])
 
+const fecharModal = useCallback(()=> {
+  if(cardRef.current){
+    cardRef.current.abrir()
+  }
+}, [])
+
 
   return (
     <div className="bg-slate-900 w-screen h-screen flex  justify-center ">
+   
+       <Card ref={cardRef}/>
+       <button onClick={fecharModal}>Abrir modal</button>
       <header className="w-[400px] h-[400px]  mt-20 justify-center items-center flex flex-col">
         <main className="w-[350px] mt-[-132px] border-b-[1.5px] border-b-gray-800 h-[70px] flex justify-between items-center">
+    
           <div className="flex felx-col gap-5">
             <figure className="w-[50px] h-[50px] shadow-2xl rounded-full overflow-hidden">
               <Image 
@@ -82,8 +94,9 @@ export default function Home() {
             </Coment.Action>
           </Coment.Root>
 
-
+        
           </div>
+          
       </header>
       <div className="absolute top-[250px] opacity-10 text-[200px]">
           🚀
